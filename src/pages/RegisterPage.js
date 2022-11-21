@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
+
 // @mui
 import { styled } from '@mui/material/styles';
 import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
@@ -9,8 +10,7 @@ import useResponsive from '../hooks/useResponsive';
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { LoginForm } from '../sections/auth/login';
-
+import { RegisterForm } from '../sections/auth/login';
 
 // ----------------------------------------------------------------------
 
@@ -42,20 +42,17 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-
-
-export default function LoginPage() {
+export default function RegisterPage() {
   const navigate = useNavigate();
   const handleClick = () => { 
-    navigate('/register', { replace: true });
+    navigate('/login', { replace: true });
   }
-
   const mdUp = useResponsive('up', 'md');
 
   return (
     <>
       <Helmet>
-        <title> Login | Agenda </title>
+        <title> Registro | Agenda </title>
       </Helmet>
 
       <StyledRoot>
@@ -70,26 +67,28 @@ export default function LoginPage() {
         {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Bienvenido a la Agenda Médica - FIDEM
+              Bienvenido al registro para la Agenda Médica - FIDEM
             </Typography>
-            <img src="/assets/illustrations/illustration_login.png" alt="login" />
+            <img src="/assets/illustrations/illustration_dashboard.png" alt="register" />
           </StyledSection>
         )}
 
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Ingrese a la Agenda
+              Registrar Usuario
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
               {/* No esta registrado? */} {''}
-               Crear cuenta {' '}
-              <Link variant="subtitle2" onClick={handleClick}> Registrarse</Link>
+              Ya esta registrado? {/* <Link variant="subtitle2"> Ingresar</Link> */}
+              <Link variant="subtitle2" onClick={handleClick}> Ingresar</Link>
               {/* <RegisterForm /> */}
             </Typography>
 
-            <Stack direction="row" spacing={2}>
+            
+
+            {/* <Stack direction="row" spacing={2}>
               <Button fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify icon="eva:google-fill" color="#DF3E30" width={22} height={22} />
               </Button>
@@ -101,7 +100,9 @@ export default function LoginPage() {
               <Button fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} height={22} />
               </Button>
-            </Stack>
+            </Stack> */}
+
+            <RegisterForm />
 
             <Divider sx={{ my: 3 }}>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -109,7 +110,6 @@ export default function LoginPage() {
               </Typography>
             </Divider>
 
-            <LoginForm />
           </StyledContent>
         </Container>
       </StyledRoot>
