@@ -4,10 +4,10 @@ import { faker } from '@faker-js/faker';
 
 const POST_TITLES = [
   'Whiteboard Templates By Industry Leaders',
-  'Tesla Cybertruck-inspired camper trailer for Tesla fans who can’t just wait for the truck!',
-  'Designify Agency Landing Page Design',
-  '✨What is Done is Done ✨',
   'Fresh Prince',
+  'Designify Agency Landing Page Design',
+  'Tesla Cybertruck-inspired camper trailer for Tesla fans who can’t just wait for the truck!',
+  '✨What is Done is Done ✨',
   'Six Socks Studio',
   'vincenzo de cotiis’ crossing over showcases a research on contamination',
   'Simple, Great Looking Animations in Your Project | Video Tutorial',

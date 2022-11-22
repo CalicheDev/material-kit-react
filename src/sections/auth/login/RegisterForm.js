@@ -1,12 +1,25 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, Divider } from '@mui/material';
+import {
+  Link,
+  Stack,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Checkbox,
+  Typography,
+  Divider,
+  Alert,
+  Button,
+  Box,
+  Collapse,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import CloseIcon from '@mui/icons-material/Close';
 /* import { BlogPostsSort } from '../../@dashboard/blog'; */
 // components
 import Iconify from '../../../components/iconify';
-
 
 // ----------------------------------------------------------------------
 
@@ -57,13 +70,15 @@ export default function RegisterForm() {
 
   /* Option for create account */
   const handleClick = () => {
-    navigate('/login', { replace: true });
+    navigate('/dashboard', { replace: true });
   };
 
   /* Option for validate data of user before register */
   const validateClick = () => {
     navigate('/login', { replace: true });
   };
+
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -88,13 +103,65 @@ export default function RegisterForm() {
                 ),
               }} */
             />
-            
           </Stack>
-
-          <LoadingButton size="large" type="submit" variant="contained" onClick={validateClick}>
+          {/* <LoadingButton size="large" type="submit" variant="contained" onClick={validateClick}>
             Validar Datos
-          </LoadingButton>
+          </LoadingButton> */}
+          <Button
+            size="large"
+            disabled={open}
+            variant="contained"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            Validar Datos
+          </Button>
         </Stack>
+
+        <Box sx={{ width: '100%' }}>
+          <Collapse in={open}>
+            <Alert severity="success"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              VERIFICADO! Si se encuentra registrado
+            </Alert>
+          </Collapse>
+        </Box>
+
+        <Box sx={{ width: '100%' }}>
+          <Collapse in={open}>
+            <Alert severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              ERROR! No se encontro el registro
+            </Alert>
+          </Collapse>
+        </Box>
 
         <Divider sx={{ my: 3 }}>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
