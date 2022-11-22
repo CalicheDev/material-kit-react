@@ -8,7 +8,9 @@ import {
   Stack,
   Divider,
   Popover,
+  Modal,
   Checkbox,
+  Switch,
   MenuItem,
   IconButton,
   CardHeader,
@@ -28,7 +30,7 @@ AppTasks.propTypes = {
 export default function AppTasks({ title, subheader, list, ...other }) {
   const { control } = useForm({
     defaultValues: {
-      taskCompleted: ['2'],
+      taskCompleted: [''],
     },
   });
 
@@ -117,7 +119,7 @@ function TaskItem({ task, checked, onChange }) {
       <FormControlLabel
         control={<Checkbox checked={checked} onChange={onChange} />}
         label={task.label}
-        sx={{ flexGrow: 1, m: 0 }}
+        sx={{ flexGrow: 1, m: 0 }} 
       />
 
       <IconButton size="large" color="inherit" sx={{ opacity: 0.48 }} onClick={handleOpenMenu}>

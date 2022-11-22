@@ -40,6 +40,7 @@ export default function AgendaPage() {
             Nueva Cita
           </Button> */}
         </Stack>
+        
         {/* <Stack mb={3} direction="row" alignItems="center" justifyContent="space-between">
           <BlogPostsSearch posts={POSTS} />
           <BlogPostsSort options={SORT_OPTIONS} />
@@ -56,10 +57,22 @@ export default function AgendaPage() {
         </Stack>
 
         {/* Grid para pintar los card que contienen los datos de disponibiliddad de cada medico
-        *fecha y hora del cupo
+         *fecha y hora del cupo
          */}
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} md={6} lg={12}>
+            <AppTasks
+              title="Seleccione una especialidad"
+              list={[
+                { id: '1', label: 'CONSULTA EXTERNA' },
+                { id: '2', label: 'CONSULTA PALIATIVO' },
+                { id: '3', label: 'PSIQUIATRÍA' },
+                { id: '4', label: 'NUTRICIÓN' },
+                { id: '5', label: 'ORTOPEDIA Y TRAUMATOLOGÍA' },
+              ]}
+            />
+          </Grid>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppTrafficBySite
               title="Cupos por Médico"
               list={[
@@ -88,7 +101,7 @@ export default function AgendaPage() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
-          <AppTasks
+            <AppTasks
               title="Horarios Disponibles"
               list={[
                 { id: '1', label: '08:00 AM' },
@@ -96,9 +109,12 @@ export default function AgendaPage() {
                 { id: '3', label: '09:00 AM' },
                 { id: '4', label: '09:30 AM' },
                 { id: '5', label: '10:00 AM' },
+                { id: '5', label: '10:30 AM' },
+                { id: '5', label: '11:00 AM' },
+                { id: '5', label: '11:30 AM' },
               ]}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </>
