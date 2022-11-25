@@ -165,7 +165,8 @@ export default function RegisterForm() {
 
         <Divider sx={{ my: 3 }}>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Ingrese los datos a continuación
+            {/* Ingrese los datos a continuación */}
+            Rellene el formulario y comienza a gestionar tus citas
           </Typography>
         </Divider>
 

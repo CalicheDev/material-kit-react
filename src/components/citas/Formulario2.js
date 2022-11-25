@@ -4,7 +4,23 @@ import {DragDropContext,Droppable,Draggable} from 'react-beautiful-dnd'
 
 
 
-export default function Formulario2() {
+export default function ShoppingList(props){
+  
+    return (
+      <div className="shopping-list">
+        <h1>Shopping List for {props.name}</h1>
+        <ul>
+          <li>Instagram</li>
+          <li>WhatsApp</li>
+          <li>Oculus</li>
+        </ul>
+      </div>
+    );
+  
+}
+
+
+/* export default function Formulario2() {
 
   const TEAM_CLINIC = [
     { id: '1', name: 'Ana Montalvo' },
@@ -60,7 +76,7 @@ return(
     </Container>
   </div>
 );
-}
+} */
 
 
 

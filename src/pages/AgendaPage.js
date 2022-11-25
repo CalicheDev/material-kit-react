@@ -40,7 +40,7 @@ export default function AgendaPage() {
             Nueva Cita
           </Button> */}
         </Stack>
-        
+
         {/* <Stack mb={3} direction="row" alignItems="center" justifyContent="space-between">
           <BlogPostsSearch posts={POSTS} />
           <BlogPostsSort options={SORT_OPTIONS} />
@@ -115,7 +115,7 @@ export default function AgendaPage() {
               ]}
             />
           </Grid> */}
-        </Grid>
+        </Grid>        
       </Container>
     </>
   );
