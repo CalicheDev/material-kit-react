@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
+import ProfilePage from '../../../pages/ProfilePage';
 // mocks_
 import account from '../../../_mock/account';
 
@@ -11,20 +13,27 @@ const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: 'eva:home-fill',
+    path: 'perfil',
+    element: <Navigate to="/dashboard/perfil" />,
   },
   {
     label: 'Profile',
     icon: 'eva:person-fill',
+    path: 'perfil',
+    element: <ProfilePage />,
   },
   {
     label: 'Settings',
     icon: 'eva:settings-2-fill',
+    path: 'perfil',
+    element: <ProfilePage />,
   },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -33,6 +42,10 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+  };
+
+  const handleClick = () => {
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -97,7 +110,7 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+        <MenuItem onClick={handleClick} sx={{ m: 1 }}>
           Logout
         </MenuItem>
       </Popover>

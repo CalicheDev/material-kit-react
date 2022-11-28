@@ -107,7 +107,7 @@ export default function RegisterForm() {
           {/* <LoadingButton size="large" type="submit" variant="contained" onClick={validateClick}>
             Validar Datos
           </LoadingButton> */}
-          <Button
+          <LoadingButton
             size="large"
             disabled={open}
             variant="contained"
@@ -116,7 +116,7 @@ export default function RegisterForm() {
             }}
           >
             Validar Datos
-          </Button>
+          </LoadingButton>
         </Stack>
 
         <Box sx={{ width: '100%' }}>
@@ -130,7 +130,7 @@ export default function RegisterForm() {
                   onClick={() => {
                     setOpen(false);
                   }}
-                >
+                  >
                   <CloseIcon fontSize="inherit" />
                 </IconButton>
               }
