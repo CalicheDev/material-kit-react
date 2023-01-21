@@ -1,7 +1,9 @@
+import React, { useState } from 'react';
+import { Calendar, TimePicker } from 'antd';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 // @mui
-import { Grid, Button, Container, Stack, Typography, TextField } from '@mui/material';
+import { Grid, Button, Container, Stack, Typography, TextField, MenuItem } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
@@ -25,6 +27,62 @@ import {
 // ----------------------------------------------------------------------
 
 export default function AgendaPage() {
+  const medicos = [
+    { value: '1', label: 'Dr. Juan Pérez', especialidad: 'Cardiología' },
+    { value: '2', label: 'Dra. Maria González', especialidad: 'Dermatología' },
+    { value: '3', label: 'Dr. Luis Fernández', especialidad: 'Oftalmología' },
+    { value: '4', label: 'Dra. Ana López', especialidad: 'Pediatría' },
+    { value: '5', label: 'Dr. Pedro Martínez', especialidad: 'Traumatología' },
+  ];
+  const [appointment, setAppointment] = useState({});
+  
+  /* const ShowAddAppointment = ({ selectedMedico }) => {
+    if (selectedMedico) {
+    return <AddAppointment />;
+    } else {
+    return <p>Por favor seleccione un médico para continuar</p>;
+    }
+    };
+    
+    const handleMedicoChange = (e) => {
+    setSelectedMedico(e.target.value);
+    };
+    
+    const [selectedMedico, setSelectedMedico] = useState(null); */
+
+
+
+  const AddAppointment = () => {
+    const handleDateChange = (date) => {
+      setAppointment({ ...appointment, date });
+    };
+
+    const handleTimeChange = (time) => {
+      setAppointment({ ...appointment, time });
+    };
+
+    const handleInputChange = (e) => {
+      setAppointment({ ...appointment, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(appointment);
+    };
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <Calendar onChange={handleDateChange} />
+        <TimePicker onChange={handleTimeChange} />
+        <Button type="submit">Submit</Button>
+        <Stack mb={3} direction="row" alignItems="center" justifyContent="space-between">
+          <TextField type="text" name="name" placeholder="Name" onChange={handleInputChange} />
+          <TextField type="text" name="reason" placeholder="Reason for appointment" onChange={handleInputChange} />
+        </Stack>
+      </form>
+    );
+  };
+
   return (
     <>
       <Helmet>
@@ -36,29 +94,27 @@ export default function AgendaPage() {
           <Typography variant="h4" gutterBottom>
             Administrador de citas
           </Typography>
-          {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            Nueva Cita
-          </Button> */}
         </Stack>
 
-        {/* <Stack mb={3} direction="row" alignItems="center" justifyContent="space-between">
-          <BlogPostsSearch posts={POSTS} />
-          <BlogPostsSort options={SORT_OPTIONS} />
-        </Stack> */}
+        <Grid item xs={12} md={6} lg={12}>
+          <TextField
+            id="outlined-select-currency"
+            select
+            label="Medico"
+            helperText="Seleccione un Medico"
+            variant="outlined"
+          >
+            {medicos.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label} - {option.especialidad}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
 
-        {/* <Grid container spacing={3}>
-          {POSTS.map((post, index) => (
-            <BlogPostCard key={post.id} post={post} index={index} />
-          ))}
-        </Grid> */}
-        <Stack mb={3} direction="row" alignItems="center" justifyContent="space-between">
-          <TextField type="date" name="fecha" />
-          {/* <Formulario2 /> */}
-        </Stack>
+        <AddAppointment />
+        {/* <ShowAddAppointment /> */}
 
-        {/* Grid para pintar los card que contienen los datos de disponibiliddad de cada medico
-         *fecha y hora del cupo
-         */}
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={12}>
             <AppTasks
@@ -72,50 +128,20 @@ export default function AgendaPage() {
               ]}
             />
           </Grid>
-          {/* <Grid item xs={12} md={6} lg={4}>
-            <AppTrafficBySite
-              title="Cupos por Médico"
+          <Grid item xs={12} md={6} lg={12}>
+            <AppTasks
+              title="Seleccione un Procedimiento"
               list={[
-                {
-                  name: 'Ana Montalvo',
-                  value: 20,
-                  icon: <Iconify icon={'ant-design:windows-filled'} color="#1877F2" width={32} />,
-                },
-                {
-                  name: 'Carlos Bejarano',
-                  value: 15,
-                  icon: <Iconify icon={'ant-design:windows-filled'} color="#DF3E30" width={32} />,
-                },
-                {
-                  name: 'Juan Fernando',
-                  value: 5,
-                  icon: <Iconify icon={'ant-design:windows-filled'} color="#006097" width={32} />,
-                },
-                {
-                  name: 'Nathalia Pinillos',
-                  value: 10,
-                  icon: <Iconify icon={'ant-design:windows-filled'} color="#1C9CEA" width={32} />,
-                },
+                { id: '1', label: 'Cirugía' },
+                { id: '2', label: 'Terapia' },
+                { id: '3', label: 'Radiología' },
+                { id: '4', label: 'Estudios de laboratorio' },
+                { id: '5', label: 'Consulta' },
               ]}
+              /* multiple={true} */
             />
           </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppTasks
-              title="Horarios Disponibles"
-              list={[
-                { id: '1', label: '08:00 AM' },
-                { id: '2', label: '08:30 AM' },
-                { id: '3', label: '09:00 AM' },
-                { id: '4', label: '09:30 AM' },
-                { id: '5', label: '10:00 AM' },
-                { id: '5', label: '10:30 AM' },
-                { id: '5', label: '11:00 AM' },
-                { id: '5', label: '11:30 AM' },
-              ]}
-            />
-          </Grid> */}
-        </Grid>        
+        </Grid>
       </Container>
     </>
   );

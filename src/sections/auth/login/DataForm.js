@@ -14,8 +14,13 @@ import {
   Button,
   Box,
   Collapse,
+  FormControl,
+  InputLabel,
+  Input,
+  FormHelperText,
+  FormControlLabel,
 } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
+import { LoadingButton,DatePicker  } from '@mui/lab';
 import CloseIcon from '@mui/icons-material/Close';
 // components
 import Iconify from '../../../components/iconify';
@@ -54,10 +59,22 @@ export default function DataForm() {
   };
 
   const [open, setOpen] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+  
 
   return (
     <>
       <Stack spacing={2}>
+        <FormControl direction="row">
+          <InputLabel htmlFor="my-input">Email</InputLabel>
+          <Input id="my-input" aria-describedby="my-helper-text" />
+          <FormHelperText id="my-helper-text">Mensaje de prueba</FormHelperText>
+        </FormControl>
+
+        
+          {/* <DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} /> */}
+          
+         
         {/* <BlogPostsSort options={SORT_OPTIONS} /> */}
         {/* <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
           <Typography variant="body2" sx={{ mb: 3 }}>
@@ -87,10 +104,16 @@ export default function DataForm() {
           <TextField type="text" name="apellidos" label="Apellidos" />
         </Stack> */}
 
-        <Typography variant="h6" sx={{ mb: 2 }}>
-            Tipo de documento:{' '}
+        <Divider sx={{ my: 3 }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            INFORMACIÓN DEL USUARIO
           </Typography>
-          <TextField type="number" name="tipo" label="Tipo de documento" />
+        </Divider>
+
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          Tipo de documento:{' '}
+        </Typography>
+        <TextField type="number" name="tipo" label="Tipo de documento" />
 
         <Typography variant="h6" sx={{ mb: 2 }}>
           Número de documento:{' '}
@@ -106,9 +129,18 @@ export default function DataForm() {
           Apellidos:{' '}
         </Typography>
         <TextField type="text" name="apellidos" label="Apellidos" />
+      </Stack>
 
+      <Divider sx={{ my: 3 }}>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          INFORMACIÓN DE CONTACTO
+        </Typography>
+      </Divider>
+
+      <Stack spacing={2}>
+        <TextField name="text" label="Dirección" />
         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3}>
-          <TextField name="text" label="Dirección" />
+          <TextField type="text" name="city" label="Ciudad" />
           <TextField type="number" name="tel" label="Telefono" />
           <TextField type="number" name="tel" label="Celular" />
         </Stack>
@@ -139,10 +171,16 @@ export default function DataForm() {
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3}>
-      <LoadingButton fullWidth size="large" type="reset" variant="contained" color="warning">
+        <LoadingButton fullWidth size="large" type="reset" variant="contained" color="warning">
           Limpiar datos
         </LoadingButton>
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" /* color="info" */ onClick={handleClick}>
+        <LoadingButton
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          /* color="info" */ onClick={handleClick}
+        >
           Actualizar datos
         </LoadingButton>
       </Stack>
