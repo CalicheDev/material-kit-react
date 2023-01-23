@@ -45,6 +45,7 @@
     "@mui/icons-material": "^5.10.14",
     "@mui/lab": "^5.0.0-alpha.103",
     "@mui/material": "^5.10.14",
+    "@mui/x-date-pickers": "^5.0.15",
     "antd": "^5.1.6",
     "apexcharts": "^3.36.0",
     "change-case": "^4.1.2",
