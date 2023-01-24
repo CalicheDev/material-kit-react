@@ -3,6 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 // @mui
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Typography,
@@ -15,7 +16,7 @@ import {
   Stepper,
   Step,
   StepLabel,
-  Link,
+  Link  
 } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // components
@@ -27,9 +28,6 @@ import Review from '../components/citas/Review';
 /* import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog'; */
 // mock
 /* import POSTS from '../_mock/blog'; */
-
-
-
 
 // ----------------------------------------------------------------------
 
@@ -66,8 +64,12 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export default function Checkout() {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/dashboard/perfil', { replace: true });
+  };
 
+  const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -113,26 +115,28 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Cita Asignada!
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will send you an update
-                  when your order has shipped.
+                  Su cita ha sido programada para el día xx/xxx/xxx con el Dr. Carlos Bejarano. Por favor, recuerde la
+                  fecha de su cita y llegue 15 minutos antes de la hora programada para completar los trámites
+                  administrativos y la admisión correspondiente.
                 </Typography>
               </>
             ) : (
               <>
                 {getStepContent(activeStep)}
+
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
+                      Atrás
                     </Button>
                   )}
-
                   <Button variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 1 }}>
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Place order' : 'Siguiente'}
                   </Button>
+                  <Button variant="outlined" onClick={handleClick} sx={{ mt: 3, ml: 1 }}>Editar </Button>
                 </Box>
               </>
             )}
