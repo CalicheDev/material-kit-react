@@ -1,6 +1,7 @@
 import React from 'react';
 import {Grid,Typography,TextField,FormControlLabel,Checkbox} from '@mui/material';
 
+/* Componente principal para mostrar el formulario con los datos básicos del paciente */
 export default function AddressForm() {
   return (
     <>

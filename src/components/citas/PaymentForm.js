@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import {Typography,Box} from '@mui/material';
+import { DataGrid} from '@mui/x-data-grid';
+import { Typography, Box } from '@mui/material';
+// Libreria para hacer una petición a una API
+/* import axios from 'axios'; */
 
-const columns: GridColDef[] = [
+/* Parametros para la configuración de columnas para la tabla Profesionales. */
+const columns = [
   { field: 'id', headerName: 'Codigo', width: 90 },
   {
     field: 'firstName',
@@ -16,7 +19,7 @@ const columns: GridColDef[] = [
     width: 150,
     editable: true,
   },
-  
+
   /* {
     field: 'fullName',
     headerName: 'Full name',
@@ -28,6 +31,7 @@ const columns: GridColDef[] = [
   }, */
 ];
 
+/* Array que carga los datos de la tabla profesionales */
 const rows = [
   { id: 1, lastName: 'Dolor', firstName: 'Nathalia Pinillos' },
   { id: 2, lastName: 'Dolor', firstName: 'Lucila' },
@@ -40,6 +44,22 @@ const rows = [
   { id: 9, lastName: 'Paliativos', firstName: 'Harvey' },
 ];
 
+/* Codigo para conectarse a una API y realizar una peticion HTTP usando el metodo GET
+ *y también utiliza un hook de React llamado 'useEffect' para cargar los datos de la API en el estado de la aplicación. */
+/* const [rows, setRows] = useState([]);
+const [rows, setRows] = useState([]);
+
+useEffect(() => {
+  axios.get('https://ejemplo.com/api/profesionales')
+    .then(res => {
+        setRows(res.data);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}, []); */
+
+/* Componente principal para mostrar el formulario con los datos de los profesionales con disponibilidad de citas */
 export default function PaymentForm() {
   return (
     <>
@@ -47,16 +67,16 @@ export default function PaymentForm() {
         Profesionales y Especialidades
       </Typography>
       <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
-      />
-    </Box>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+      </Box>
     </>
   );
 }
